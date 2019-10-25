@@ -1,27 +1,14 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { connect } from "react-redux";
+import * as usuariosActions from "../../actions/usuariosactions";
 
 class Usuarios extends Component {
-  //   async componentDidMount() {
-  //     const respuesta = await axios.get(
-  //       "https://jsonplaceholder.typicode.com/users"
-  //     );
-  //     this.setState({
-  //       usuarios: respuesta.data
-  //     });
-  //   }
-  ponerfilas = () =>
-    this.props.usuarios.map(usr => (
-      <tr key={usr.id}>
-        <td>{usr.name}</td>
-        <td>{usr.email}</td>
-        <td>{usr.website}</td>
-      </tr>
-    ));
-  render() {
-    console.log(this.props);
+  componentDidMount() {
+    this.props.traer();
+  }
 
+  ponerContenido = () => {
+    this.props.cargando ? "cargadno" :
     return (
       <div className="margen">
         <table className="tabla">
@@ -36,6 +23,17 @@ class Usuarios extends Component {
         </table>
       </div>
     );
+  };
+  ponerfilas = () =>
+    this.props.usuarios.map(usr => (
+      <tr key={usr.id}>
+        <td>{usr.name}</td>
+        <td>{usr.email}</td>
+        <td>{usr.website}</td>
+      </tr>
+    ));
+  render() {
+    return <div>{this.ponerContenido()}</div>;
   }
 }
 const mapStateToProps = reducers => {
@@ -44,7 +42,5 @@ const mapStateToProps = reducers => {
 
 export default connect(
   mapStateToProps,
-  {
-    /*KMC*/
-  }
+  usuariosActions
 )(Usuarios);
