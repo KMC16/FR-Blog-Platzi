@@ -11,11 +11,13 @@ table td {
   padding-top: 10px;
   padding-bottom: 10px;
 }
+
 #menu {
   background-color: #253a46;
   padding: 20px;
   font-size: 20px;
 }
+
 #menu a {
   color: white;
   padding-right: 50px;
@@ -23,4 +25,17 @@ table td {
 
 body {
   margin: 0px;
+}
+
+.Loading__content {
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
+}
+
+.Loading__content {
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }

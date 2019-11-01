@@ -1,14 +1,24 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as usuariosActions from "../../actions/usuariosactions";
+import Loading from "../../image/Loading.gif";
 
+import "../../index.css";
 class Usuarios extends Component {
   componentDidMount() {
     this.props.traer();
   }
 
   ponerContenido = () => {
-    this.props.cargando ? "cargadno" :
+    if (this.props.cargando) {
+      return (
+        <div className="Loading__container">
+          <div className="Loading__content">
+            <img src={Loading} alt="" />
+          </div>
+        </div>
+      );
+    }
     return (
       <div className="margen">
         <table className="tabla">
