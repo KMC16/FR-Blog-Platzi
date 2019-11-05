@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as usuariosActions from "../../actions/usuariosactions";
 import Loading from "../../image/Loading.gif";
+import Error from "../../components/Error";
+import Tabla from "../../components/usuarios/Tabla";
 
 import "../../index.css";
 class Usuarios extends Component {
@@ -19,31 +21,19 @@ class Usuarios extends Component {
         </div>
       );
     }
+    if (this.props.error) {
+      return <Error mensaje={this.props.error} />;
+    }
+    return <Tabla />;
+  };
+
+  render() {
     return (
-      <div className="margen">
-        <table className="tabla">
-          <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Correo</th>
-              <th>Enlace</th>
-            </tr>
-          </thead>
-          <tbody>{this.ponerfilas()}</tbody>
-        </table>
+      <div>
+        <h2>Usuarios</h2>
+        {this.ponerContenido()}
       </div>
     );
-  };
-  ponerfilas = () =>
-    this.props.usuarios.map(usr => (
-      <tr key={usr.id}>
-        <td>{usr.name}</td>
-        <td>{usr.email}</td>
-        <td>{usr.website}</td>
-      </tr>
-    ));
-  render() {
-    return <div>{this.ponerContenido()}</div>;
   }
 }
 const mapStateToProps = reducers => {

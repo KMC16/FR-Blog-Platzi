@@ -1,0 +1,13 @@
+.Error__container {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+.Error__content {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
